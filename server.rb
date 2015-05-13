@@ -7,5 +7,5 @@ configure do
 end
 
 get '/api/v1/foobar' do
-  "Nice"
+  "Nice hello world to you!"
 end
