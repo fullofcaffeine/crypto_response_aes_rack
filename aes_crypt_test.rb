@@ -3,8 +3,6 @@ require './aes_crypt'
 require 'byebug'
 
 class TestAesCrypt < Minitest::Test
-
-
   def setup
     @key = "supersecretmojo"
     @data = '{"foo":"bar"}'
@@ -21,5 +19,12 @@ class TestAesCrypt < Minitest::Test
     @decrypted_data = AESCrypt.decrypt(@encrypted_data, @key)
 
     assert_equal @decrypted_data, @data
+  end
+
+  def test_fails_decrypting_with_wrong_key
+    @encrypted_data = AESCrypt.encrypt(@data, @key)
+    @decrypted_data = AESCrypt.decrypt(@encrypted_data, 'wrong_key')
+
+    refute (@decrypted_data == @data)
   end
 end
