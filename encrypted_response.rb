@@ -15,7 +15,7 @@ class EncryptedResponse
 
     body = [Base64.encode64(AESCrypt.encrypt(body.join, DUMMY_KEY))]
 
-    headers["Content-Length"] = body[0].bytesize
+    headers["Content-Length"] = body[0].bytesize.to_s
 
     [status, headers, body]
   end
